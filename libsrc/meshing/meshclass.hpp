@@ -311,7 +311,7 @@ namespace netgen
     { return lockedpoints; }
 
     /// Returns number of domains
-    int GetNDomains() const;
+	DLL_HEADER int GetNDomains() const;
 
     ///
     int GetDimension() const 
@@ -320,7 +320,7 @@ namespace netgen
     { dimension = dim; }
 
     /// sets internal tables
-    void CalcSurfacesOfNode ();
+    DLL_HEADER void CalcSurfacesOfNode ();
 
     /// additional (temporarily) fix points 
     void FixPoints (const BitArray & fixpoints);
@@ -390,13 +390,13 @@ namespace netgen
     ///
     DLL_HEADER void SetGlobalH (double h);
     ///
-    void SetMinimalH (double h);
+	DLL_HEADER void SetMinimalH(double h);
     ///
     double MaxHDomain (int dom) const;
     ///
     void SetMaxHDomain (const Array<double> & mhd);
     ///
-    double GetH (const Point3d & p) const;
+	DLL_HEADER double GetH(const Point3d & p) const;
     ///
     double GetMinH (const Point3d & pmin, const Point3d & pmax);
     ///

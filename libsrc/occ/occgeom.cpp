@@ -8,17 +8,20 @@
 #include "ShapeAnalysis_CheckSmallFace.hxx"
 #include "ShapeAnalysis_DataMapOfShapeListOfReal.hxx"
 #include "ShapeAnalysis_Surface.hxx"
-#include "BRepAlgoAPI_Fuse.hxx"
+
 #include "BRepCheck_Analyzer.hxx"
 #include "BRepLib.hxx"
 #include "ShapeBuild_ReShape.hxx"
 #include "ShapeFix.hxx"
+#include "ShapeFix_Edge.hxx"
 #include "ShapeFix_FixSmallFace.hxx"
+#include "StlTransfer.hxx"
+#include "TopoDS_Iterator.hxx"
 #include "Partition_Spliter.hxx"
-
 
 namespace netgen
 {
+
    void OCCGeometry :: PrintNrShapes ()
    {
       TopExp_Explorer e;
@@ -937,11 +940,15 @@ namespace netgen
 
    void OCCGeometry :: CalcBoundingBox ()
    {
-      Bnd_Box bb;
-      BRepBndLib::Add (shape, bb);
+      Bnd_Box b;
 
+// SDS Not defined !
+
+      BRepBndLib::Add ((const TopoDS_Shape) shape, b,(Standard_Boolean)true);
+
+// SDS
       double x1,y1,z1,x2,y2,z2;
-      bb.Get (x1,y1,z1,x2,y2,z2);
+      b.Get (x1,y1,z1,x2,y2,z2);
       Point<3> p1 = Point<3> (x1,y1,z1);
       Point<3> p2 = Point<3> (x2,y2,z2);
 
@@ -1038,9 +1045,9 @@ namespace netgen
    {
       cout << "writing stl..."; cout.flush();
       StlAPI_Writer writer;
-      writer.RelativeMode() = Standard_False;
+//      writer.RelativeMode() = Standard_False;
 
-      writer.SetDeflection(0.02);
+//      writer.SetDeflection(0.02);
       writer.Write(shape,filename);
 
       cout << "done" << endl;

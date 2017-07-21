@@ -29,7 +29,7 @@ namespace netgen
 
   extern Array<int> tets_in_qualclass;
 
-  class multithreadt
+  class DLL_HEADER multithreadt
   {
   public:
     int pause;
@@ -44,7 +44,7 @@ namespace netgen
     multithreadt();
   };
 
-  extern volatile multithreadt multithread;
+  DLL_HEADER extern volatile multithreadt multithread;
 
   DLL_HEADER extern string ngdir;
   extern DebugParameters debugparam;

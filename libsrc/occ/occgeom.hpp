@@ -167,7 +167,7 @@ namespace netgen
 
 
 
-   class Line
+   class DLL_HEADER Line
    {
    public:
       Point<3> p0, p1;
@@ -189,7 +189,7 @@ namespace netgen
 
 
 
-   class OCCGeometry : public NetgenGeometry
+   class DLL_HEADER OCCGeometry : public NetgenGeometry
    {
       Point<3> center;
 
@@ -395,7 +395,7 @@ namespace netgen
 
 
 
-   class OCCParameters
+   class DLL_HEADER OCCParameters
    {
    public:
 
@@ -435,17 +435,17 @@ namespace netgen
    OCCGeometry * LoadOCC_STEP (const char * filename);
    OCCGeometry * LoadOCC_BREP (const char * filename);
 
-   extern OCCParameters occparam;
+   DLL_HEADER extern OCCParameters occparam;
 
 
    // Philippose - 31.09.2009
    // External access to the mesh generation functions within the OCC
    // subsystem (Not sure if this is the best way to implement this....!!)
-   extern int OCCGenerateMesh (OCCGeometry & occgeometry, Mesh*& mesh,
+   DLL_HEADER extern int OCCGenerateMesh (OCCGeometry & occgeometry, Mesh*& mesh,
 			       MeshingParameters & mparam,
 			       int perfstepsstart, int perfstepsend);
 
-  extern void OCCSetLocalMeshSize(OCCGeometry & geom, Mesh & mesh);
+   DLL_HEADER extern void OCCSetLocalMeshSize(OCCGeometry & geom, Mesh & mesh);
 
    extern void OCCMeshSurface (OCCGeometry & geom, Mesh & mesh, int perfstepsend);
 

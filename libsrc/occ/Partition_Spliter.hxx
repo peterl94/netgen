@@ -29,7 +29,7 @@
 #include <TopTools_DataMapOfShapeShape.hxx>
 #endif
 #ifndef _Handle_BRepAlgo_AsDes_HeaderFile
-#include <Handle_BRepAlgo_AsDes.hxx>
+#include <BRepAlgo_AsDes.hxx>
 #endif
 #ifndef _BRepAlgo_Image_HeaderFile
 #include <BRepAlgo_Image.hxx>
@@ -43,9 +43,12 @@
 #ifndef _Standard_Boolean_HeaderFile
 #include <Standard_Boolean.hxx>
 #endif
+#include <TopTools_ShapeMapHasher.hxx>
+#include <TopTools_OrientedShapeMapHasher.hxx>
+#include <TopTools_MapOfOrientedShape.hxx>
 class BRepAlgo_AsDes;
 class TopoDS_Shape;
-class TopTools_ListOfShape;
+// class TopTools_ListOfShape;
 class TopoDS_Edge;
 
 

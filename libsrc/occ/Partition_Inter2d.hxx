@@ -23,12 +23,13 @@
 //
 //  File   : Partition_Inter2d.hxx
 //  Module : GEOM
-
+#include <TopTools_MapOfShape.hxx>
+//  class TopTools_MapOfShape;
 #ifndef _Partition_Inter2d_HeaderFile
 #define _Partition_Inter2d_HeaderFile
 
 #ifndef _Handle_BRepAlgo_AsDes_HeaderFile
-#include <Handle_BRepAlgo_AsDes.hxx>
+#include <BRepAlgo_AsDes.hxx>
 #endif
 #ifndef _Standard_Real_HeaderFile
 #include <Standard_Real.hxx>
@@ -38,9 +39,8 @@
 #endif
 class BRepAlgo_AsDes;
 class TopoDS_Face;
-class TopTools_MapOfShape;
 class TopoDS_Vertex;
-class TopTools_ListOfShape;
+//class TopTools_ListOfShape;
 class TopoDS_Edge;
 
 

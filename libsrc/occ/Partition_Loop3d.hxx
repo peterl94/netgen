@@ -9,7 +9,9 @@
 
 #ifndef _Partition_Loop3d_HeaderFile
 #define _Partition_Loop3d_HeaderFile
-
+#include <TopTools_ShapeMapHasher.hxx>
+#include <TopTools_OrientedShapeMapHasher.hxx>
+#include <TopTools_MapOfOrientedShape.hxx>
 #ifndef _TopTools_ListOfShape_HeaderFile
 #include <TopTools_ListOfShape.hxx>
 #endif
@@ -23,8 +25,8 @@
 #include <Standard_Real.hxx>
 #endif
 class TopoDS_Shape;
-class TopTools_ListOfShape;
-class TopTools_MapOfOrientedShape;
+//class TopTools_ListOfShape;
+//class TopTools_MapOfOrientedShape;
 class TopoDS_Edge;
 class TopoDS_Face;
 class gp_Vec;

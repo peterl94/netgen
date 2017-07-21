@@ -16,7 +16,7 @@ class SingularMatrixException
 class UVBoundsException
 {};
 
-class OCCSurface
+class DLL_HEADER OCCSurface
 {
 public:
   TopoDS_Face topods_face;
@@ -103,7 +103,7 @@ public:
 
 
 ///
-class Meshing2OCCSurfaces : public Meshing2
+class DLL_HEADER Meshing2OCCSurfaces : public Meshing2
 {
   ///
   OCCSurface surface;
@@ -141,7 +141,7 @@ protected:
 
 
 ///
-class MeshOptimize2dOCCSurfaces : public MeshOptimize2d
+class DLL_HEADER MeshOptimize2dOCCSurfaces : public MeshOptimize2d
   {
   ///
   const OCCGeometry & geometry;
@@ -169,7 +169,7 @@ public:
 class OCCGeometry;
 
 
-class OCCRefinementSurfaces : public Refinement
+class DLL_HEADER OCCRefinementSurfaces : public Refinement
 {
   const OCCGeometry & geometry;
 

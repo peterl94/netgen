@@ -175,7 +175,7 @@ namespace netgen
   }
 
 
-  class SurfaceElementIndex
+  class DLL_HEADER SurfaceElementIndex
   {
     int i;
   public:
@@ -231,7 +231,7 @@ namespace netgen
      Point in the mesh.
      Contains layer (a new feature in 4.3 for overlapping meshes.
   */
-  class MeshPoint : public Point<3>
+  class DLL_HEADER MeshPoint : public Point<3>
   {
     int layer;
     double singular; // singular factor for hp-refinement
@@ -325,7 +325,7 @@ namespace netgen
     ///
     Element2d ();
     ///
-    Element2d (int anp);
+    DLL_HEADER Element2d (int anp);
     ///
     DLL_HEADER Element2d (ELEMENT_TYPE type);
     ///
