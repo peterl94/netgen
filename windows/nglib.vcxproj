@@ -40,6 +40,7 @@
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="nglib_config.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release(OCC)|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
@@ -115,6 +116,10 @@
   <PropertyGroup>
     <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetName Condition="'$(Configuration)'=='Debug'">$(ProjectName)d</TargetName>
+    <TargetName Condition="'$(Configuration)'=='Debug(OCC)'">$(ProjectName)d</TargetName>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectName)\$(Configuration)\</IntDir>
@@ -186,7 +191,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug(OCC)|Win32'">
@@ -221,7 +226,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -258,7 +263,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug(OCC)|x64'">
@@ -296,7 +301,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -323,7 +328,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>pthreadVC2.lib;zdll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pthreadVC2.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x86;$(SolutionDir)..\..\ext_libs\zlib\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(OutDir)$(TargetFileName).intermediate.manifest</ManifestFile>
     </Link>
@@ -334,7 +339,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -364,7 +369,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>pthreadVC2.lib;zlib1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pthreadVC2.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x64;$(SolutionDir)..\..\ext_libs\zlib\x64\\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(OutDir)$(TargetFileName).intermediate.manifest</ManifestFile>
       <TargetMachine>MachineX64</TargetMachine>
@@ -376,7 +381,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release(OCC)|Win32'">
@@ -403,7 +408,7 @@
       <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>pthreadVC2.lib;zdll.lib;TKernel.lib;TKGeomBase.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKXSBase.lib;TKOffset.lib;TKFillet.lib;TKShHealing.lib;TKMesh.lib;TKMeshVS.lib;TKTopAlgo.lib;TKGeomAlgo.lib;TKBool.lib;TKPrim.lib;TKBO.lib;TKIGES.lib;TKBRep.lib;TKSTEPBase.lib;TKSTEP.lib;TKSTL.lib;TKSTEPAttr.lib;TKSTEP209.lib;TKXDESTEP.lib;TKXDEIGES.lib;TKXCAF.lib;TKDCAF.lib;TKLCAF.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pthreadVC2.lib;zlib.lib;TKernel.lib;TKGeomBase.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKXSBase.lib;TKOffset.lib;TKFillet.lib;TKShHealing.lib;TKMesh.lib;TKMeshVS.lib;TKTopAlgo.lib;TKGeomAlgo.lib;TKBool.lib;TKPrim.lib;TKBO.lib;TKIGES.lib;TKBRep.lib;TKSTEPBase.lib;TKSTEP.lib;TKSTL.lib;TKSTEPAttr.lib;TKSTEP209.lib;TKXDESTEP.lib;TKXDEIGES.lib;TKXCAF.lib;TKDCAF.lib;TKLCAF.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(CASROOT)\win32\vc8\lib;$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x86;$(SolutionDir)..\..\ext_libs\zlib\x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(OutDir)$(TargetFileName).intermediate.manifest</ManifestFile>
     </Link>
@@ -414,7 +419,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release(OCC)|x64'">
@@ -444,7 +449,7 @@
       <DisableSpecificWarnings>4250</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>pthreadVC2.lib;zlib1.lib;TKernel.lib;TKGeomBase.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKXSBase.lib;TKOffset.lib;TKFillet.lib;TKShHealing.lib;TKMesh.lib;TKMeshVS.lib;TKTopAlgo.lib;TKGeomAlgo.lib;TKBool.lib;TKPrim.lib;TKBO.lib;TKIGES.lib;TKBRep.lib;TKSTEPBase.lib;TKSTEP.lib;TKSTL.lib;TKSTEPAttr.lib;TKSTEP209.lib;TKXDESTEP.lib;TKXDEIGES.lib;TKXCAF.lib;TKLCAF.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>pthreadVC2.lib;zlib.lib;TKernel.lib;TKGeomBase.lib;TKMath.lib;TKG2d.lib;TKG3d.lib;TKXSBase.lib;TKOffset.lib;TKFillet.lib;TKShHealing.lib;TKMesh.lib;TKMeshVS.lib;TKTopAlgo.lib;TKGeomAlgo.lib;TKBool.lib;TKPrim.lib;TKBO.lib;TKIGES.lib;TKBRep.lib;TKSTEPBase.lib;TKSTEP.lib;TKSTL.lib;TKSTEPAttr.lib;TKSTEP209.lib;TKXDESTEP.lib;TKXDEIGES.lib;TKXCAF.lib;TKLCAF.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(CASROOT)\win64\vc9\lib;$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x64;$(SolutionDir)..\..\ext_libs\zlib\x64\\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(OutDir)$(TargetFileName).intermediate.manifest</ManifestFile>
       <TargetMachine>MachineX64</TargetMachine>
@@ -456,7 +461,7 @@
       <ResourceOutputFileName>$(OutDir)$(TargetFileName).embed.manifest.res</ResourceOutputFileName>
     </ManifestResourceCompile>
     <PostBuildEvent>
-      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetFileName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
+      <Command>"$(ProjectDir)\postBuild_nglib.bat" "$(ProjectName)" "$(TargetName)" "$(Configuration)" "$(Platform)" "$(ProjectDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

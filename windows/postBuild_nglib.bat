@@ -26,9 +26,9 @@ if defined NETGENDIR (
 ) else (
    echo Environment variable NETGENDIR not found.... using default location!!!
    if /i "%W_WO_OCC%" == "OCC" (   
-      set INSTALL_FOLDER=%PROJ_DIR%..\..\%PROJ_NAME%-instOCC_%BUILD_ARCH%
+      set INSTALL_FOLDER=%PROJ_DIR%..\%PROJ_NAME%-instOCC_%BUILD_ARCH%
    ) else (
-      set INSTALL_FOLDER=%PROJ_DIR%..\..\%PROJ_NAME%-instNoOCC_%BUILD_ARCH%
+      set INSTALL_FOLDER=%PROJ_DIR%..\%PROJ_NAME%-instNoOCC_%BUILD_ARCH%
    )   
 )
    
@@ -46,47 +46,44 @@ REM echo Embedding Manifest into the DLL: Completed OK!!
 REM *** Copy the DLL and LIB Files into the install folder ***
 echo Installing required files into %INSTALL_FOLDER% ....
 if /i "%BUILD_ARCH%" == "win32" (
-   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_EXEC%" "%INSTALL_FOLDER%\bin\" /i /d /y
+   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_EXEC%.dll" "%INSTALL_FOLDER%\bin\" /i /d /y
+   if exist "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_EXEC%.pdb" (
+     xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_EXEC%.pdb" "%INSTALL_FOLDER%\bin\" /i /d /y
+   )
    if errorlevel 1 goto DLLInstallFailed
 )
 if /i "%BUILD_ARCH%" == "x64" (
-   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_EXEC%" "%INSTALL_FOLDER%\bin\" /i /d /y
+   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_EXEC%.dll" "%INSTALL_FOLDER%\bin\" /i /d /y
+   if exist "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_EXEC%.pdb" (
+     xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_EXEC%.pdb" "%INSTALL_FOLDER%\bin\" /i /d /y
+   )
    if errorlevel 1 goto DLLInstallFailed
 )   
-echo Installing %PROJ_EXEC%: Completed OK!!
+echo Installing %PROJ_EXEC%.dll: Completed OK!!
 
 if /i "%BUILD_ARCH%" == "win32" (
-   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_NAME%.lib" "%INSTALL_FOLDER%\lib\" /i /d /y
+   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_TYPE%\%PROJ_EXEC%.lib" "%INSTALL_FOLDER%\lib\" /i /d /y
    if errorlevel 1 goto LibInstallFailed
 )
 if /i "%BUILD_ARCH%" == "x64" (
-   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_NAME%.lib" "%INSTALL_FOLDER%\lib\" /i /d /y
+   xcopy "%PROJ_DIR%%PROJ_NAME%\%BUILD_ARCH%\%BUILD_TYPE%\%PROJ_EXEC%.lib" "%INSTALL_FOLDER%\lib\" /i /d /y
    if errorlevel 1 goto LibInstallFailed
-)   
-
-if /i "%BUILD_ARCH%" == "x64" (
-   xcopy "%PROJ_DIR%..\..\ext_libs\pthreads-Win32\dll\x64\pthreadVC2.dll" "%INSTALL_FOLDER%\bin" /i /d /y   
-   xcopy "%PROJ_DIR%..\..\ext_libs\zlib\x64\lib\zlib1.dll" "%INSTALL_FOLDER%\bin" /i /d /y
-
-   if errorlevel 1 goto ExternalInstallFailed
-)
-if /i "%BUILD_ARCH%" == "win32" (
-   xcopy "%PROJ_DIR%..\..\ext_libs\pthreads-Win32\dll\x86\pthreadVC2.dll" "%INSTALL_FOLDER%\bin" /i /d /y
-   xcopy "%PROJ_DIR%..\..\ext_libs\zlib\x86\lib\zlib1.dll" "%INSTALL_FOLDER%\bin" /i /d /y
-   if errorlevel 1 goto ExternalInstallFailed
 )
 
-echo Installing %PROJ_NAME%.lib: Completed OK!!
+echo Installing %PROJ_EXEC%.lib: Completed OK!!
 
-REM *** Copy the include file nglib.h into the install folder ***
+REM *** Copy headers into the install folder ***
 echo Installing %PROJ_NAME%.h into %INSTALL_FOLDER%\include ....
 xcopy "%NGLIB_LIBINC%\%PROJ_NAME%.h" "%INSTALL_FOLDER%\include\" /i /d /y
-echo  "%NGLIB_LIBINC%\..\libsrc\include\nginterface.hpp"
-xcopy "%NGLIB_LIBINC%\..\libsrc\include\nginterface.h" "%INSTALL_FOLDER%\include\" /i /d /y
-xcopy "%NGLIB_LIBINC%\..\libsrc\include\nginterface_v2.hpp" "%INSTALL_FOLDER%\include\" /i /d /y
-xcopy "%NGLIB_LIBINC%\..\libsrc\visualization\soldata.hpp" "%INSTALL_FOLDER%\include\" /i /d /y
+
+echo Installing libsrc\*.h into %INSTALL_FOLDER%\include ....
+xcopy "%NGLIB_LIBINC%\..\libsrc\*.h" "%INSTALL_FOLDER%\include\" /i /d /y /s
+
+echo Installing libsrc\*.hpp into %INSTALL_FOLDER%\include ....
+xcopy "%NGLIB_LIBINC%\..\libsrc\*.hpp" "%INSTALL_FOLDER%\include\" /i /d /y /s
+
 if errorlevel 1 goto LibInstallFailed
-echo Installing %PROJ_NAME%.h: Completed OK!!
+echo Installing headers: Completed OK!!
 
 
 REM *** Clean up the build directory by deleting the OBJ files ***
