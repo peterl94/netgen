@@ -83,13 +83,13 @@ public:
    void FacesPartition(const TopoDS_Face& F1,const TopoDS_Face& F2) ;
    Standard_Boolean IsDone(const TopoDS_Face& F1,const TopoDS_Face& F2) const;
    TopTools_MapOfShape& TouchedFaces() ;
-   Handle_BRepAlgo_AsDes AsDes() const;
+   Handle(BRepAlgo_AsDes) AsDes() const;
    TopTools_MapOfShape& NewEdges() ;
    Standard_Boolean HasSameDomainF(const TopoDS_Shape& F) const;
    Standard_Boolean IsSameDomainF(const TopoDS_Shape& F1,const TopoDS_Shape& F2) const;
    const TopTools_ListOfShape& SameDomain(const TopoDS_Face& F) const;
    TopoDS_Vertex ReplaceSameDomainV(const TopoDS_Vertex& V,const TopoDS_Edge& E) const;
-   Handle_BRepAlgo_AsDes SectionEdgesAD() const;
+   Handle(BRepAlgo_AsDes) SectionEdgesAD() const;
    Standard_Boolean IsSectionEdge(const TopoDS_Edge& E) const;
    Standard_Boolean HasSectionEdge(const TopoDS_Face& F) const;
    Standard_Boolean IsSplitOn(const TopoDS_Edge& NewE,const TopoDS_Edge& OldE,const TopoDS_Face& F) const;
